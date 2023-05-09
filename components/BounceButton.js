@@ -1,11 +1,10 @@
-import { useRef, useState } from "react";
 import {Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Animated, { useAnimatedStyle, useSharedValue, withSpring } from "react-native-reanimated";
 
 
 
 
-export default function BounceButton({image, text, styleImage, styleText, onPressed, styleButton, children}) {
+export default function BounceButton({image, text, styleImage, styleText, onPressed, styleButton, children, sttyle}) {
     
     const scale = useSharedValue(1);
     const animatedStyle = useAnimatedStyle(() => {
@@ -27,6 +26,7 @@ export default function BounceButton({image, text, styleImage, styleText, onPres
         onPress={onPressed}
         onPressIn={handlePressIn}
         onPressOut={handlePressOut}
+        style = {sttyle}
       >
         <Animated.View style={[styleButton,animatedStyle]}>
           {children}

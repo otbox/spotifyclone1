@@ -3,23 +3,26 @@ import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 import ListMusic from './components/ListMusic';
-import BounceButton from './components/BounceButton';
+import ReleseContainer from './components/release';
+import PlaylistView from './components/PlaylistView';
+
+
 
 export default function App() {
 
   const [music] = useState([
-    {id: 1, image: require('./assets/icon.png') , text: "Black Sabath" , autor: 1},      
-    {id: 2, image: require('./assets/icon.png') , text: "Black Sabath" , autor: 0},    
-    {id: 3, image: require('./assets/icon.png') , text: "Black Sabath" , autor: 0},    
-    {id: 4, image: require('./assets/icon.png') , text: "Black Sabath" , autor: 0},  
-    {id: 5, image: require('./assets/icon.png') , text: "Black Sabath" , autor: 0},  
-    {id: 6, image: require('./assets/icon.png') , text: "Black Sabath" , autor: 0},  
-    {id: 7, image: require('./assets/icon.png') , text: "Black Sabath" , autor: 0},  
+    {id: 1, image: require('./assets/icon.png') ,text: "Black Sabath", autor: 1},      
+    {id: 2, image: require('./assets/icon.png') ,text: "Black Sabath", autor: 0},    
+    {id: 3, image: require('./assets/icon.png') ,text: "Black Sabath", autor: 0},    
+    {id: 4, image: require('./assets/icon.png') ,text: "Black Sabath", autor: 0},  
+    {id: 5, image: require('./assets/icon.png') ,text: "Black Sabath", autor: 0},  
+    {id: 6, image: require('./assets/icon.png') ,text: "Black Sabath", autor: 0},   
 
   ])
 
   const [fontsLoaded] = useFonts({
-    GothamBold: require('./assets/fonts/Spotify-Font/Gotham-Bold.otf')
+    GothamBold: require('./assets/fonts/Spotify-Font/Gotham-Bold.otf'),
+    GothamBook: require('./assets/fonts/Spotify-Font/GothamBook.ttf')
   })
   if (!fontsLoaded) {
     return null
@@ -27,17 +30,17 @@ export default function App() {
  
   return (
     <ScrollView style={styles.container}>
-      <View style = {styles.title}>
-        <Text style = {styles.text1}>Bom dia</Text>
-      </View>
-      <View>
-        <Text style = {styles.text1}>Por onde começar:</Text>
-        
+        <View style = {styles.title}>
+          <Text style = {styles.text1}>Bom dia</Text>
+        </View>
+        <View>
+        <Text style = {styles.text1}>teste</Text>
         <ListMusic dataa = {music} styleButton = {stylesView.container} styleImage = {stylesView.image} styleText = {stylesView.text1}/>
-      </View>
-      <StatusBar style="auto" />
+        </View>
+        <PlaylistView data={music} styleText={stylesView.text1}/>
+        <ReleseContainer stylesText={stylesView} />
+        <StatusBar style="auto" />
     </ScrollView>
-
   );
 }
 
@@ -47,6 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#121212',
     paddingTop: 40,
     paddingHorizontal: 10,
+    display: 'flex',
+    height:"100%",
   },
   title: {
     flexDirection: "row", 
@@ -59,8 +64,10 @@ const styles = StyleSheet.create({
     color: "white",
   },
   navigation: {
-    bottom: 20,
+    bottom: 0,
     position: "absolute",
+    flex: 1,
+    justifyContent: 'center',
   }
 });
 
@@ -75,7 +82,13 @@ const stylesView = StyleSheet.create({
   },
   text1: {
     fontFamily: "GothamBold",
-    fontSize: 15,
+    fontSize: 14,
     color: "white",
+  },
+  text2: {
+    fontFamily: "GothamBook",
+    fontSize: 12,
+    color: "#909090",
   }
 })
+
