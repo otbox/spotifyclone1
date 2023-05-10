@@ -14,7 +14,7 @@ export default function BounceButton({image, text, styleImage, styleText, onPres
     });
   
     const handlePressIn = () => {
-      scale.value = withSpring(0.9, {  });
+      scale.value = withSpring(0.95, {});
     };
   
     const handlePressOut = () => {
