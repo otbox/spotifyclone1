@@ -1,7 +1,20 @@
 import {Image, StyleSheet, Text, View} from 'react-native'
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { useState } from 'react';
+import BounceButton from './BounceButton';
 
 export default function ReleseContainer({stylesText}) {
-    
+    const [Play,setPlay] = useState(true)
+    const [Favorite,setFavorite] = useState(true)
+
+    const buttonPlay = () => {
+        Play === true ? setPlay(false) : setPlay(true)
+    }
+
+    const favoriteButton = () => {
+        Favorite === true ? setFavorite(false) : setFavorite(true) 
+    }
+
     return (
         <View style = {{marginVertical: 10}}> 
             <View style = {{flexDirection:"row", alignItems: "center"}}> 
@@ -16,7 +29,16 @@ export default function ReleseContainer({stylesText}) {
                 <View style = {styles.albumContainer}>
                     <Text style = {stylesText.text1}>Assault {'(Joias no Pulso)'}</Text>
                     <Text style = {stylesText.text2}>Single Orochi, Oruam, Mc Poze do Rodo</Text>
+                    <View style={{marginTop: 40,flex: 1, justifyContent:'space-between', flexDirection:'row'}}>
+                        <BounceButton onPressed={buttonPlay}>
+                            
+                        </BounceButton>
+                        <BounceButton onPressed={favoriteButton}>
+                            <MaterialCommunityIcons name={Favorite === true ? "cards-heart-outline" : "cards-heart"} size={28} color="white" />
+                        </BounceButton>
+                    </View>
                 </View>
+                
             </View>
         </View>
     );
